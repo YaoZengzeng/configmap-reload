@@ -137,7 +137,16 @@ func main() {
 		}
 	}()
 
-	for _, d := range volumeDirs {
+	dirs := []string{}
+	for _, pattern := range volumeDirs {
+		matches, err := filepath.Glob(pattern)
+		if err != nil {
+			log.Fatal(err)
+		}
+		dirs = append(dirs, matches...)
+	}
+
+	for _, d := range dirs {
 		log.Printf("Watching directory: %q", d)
 		err = watcher.Add(d)
 		if err != nil {

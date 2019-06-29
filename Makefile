@@ -13,7 +13,7 @@
 # limitations under the License.
 
 # Use the native vendor/ dependency system
-export GO111MODULE := on
+export GO111MODULE := off
 export CGO_ENABLED := 0
 
 GOOS ?= $(shell go env GOOS)
